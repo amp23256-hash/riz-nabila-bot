@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Riz Official - Bot WhatsApp</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins',sans-serif;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  background:#020817;
+  color:white;
+  overflow-x:hidden;
+  position:relative;
+}
+
+/* BACKGROUND */
+
+body::before{
+  content:'';
+  position:fixed;
+  width:450px;
+  height:450px;
+  background:
+  radial-gradient(circle,
+  rgba(59,130,246,.35),
+  transparent 70%);
+  top:-120px;
+  left:-120px;
+  filter:blur(50px);
+  z-index:-20;
+  animation:floatAura 8s ease-in-out infinite;
+}
+
+body::after{
+  content:'';
+  position:fixed;
+  width:500px;
+  height:500px;
+  background:
+  radial-gradient(circle,
+  rgba(37,99,235,.28),
+  transparent 70%);
+  bottom:-150px;
+  right:-150px;
+  filter:blur(60px);
+  z-index:-20;
+  animation:floatAura2 10s ease-in-out infinite;
+}
+
+/* FLOATING AURA */
+
+.popup-aura{
+  position:fixed;
+  width:180px;
+  height:180px;
+  border-radius:50%;
+  background:
+  radial-gradient(circle,
+  rgba(96,165,250,.35),
+  transparent 70%);
+  filter:blur(25px);
+  pointer-events:none;
+  z-index:-5;
+}
+
+.popup1{
+  top:18%;
+  left:6%;
+  animation:popupFloat 7s ease-in-out infinite;
+}
+
+.popup2{
+  bottom:12%;
+  right:8%;
+  animation:popupFloat2 9s ease-in-out infinite;
+}
+
+.popup3{
+  top:45%;
+  right:12%;
+  animation:popupFloat3 8s ease-in-out infinite;
+}
+
+/* HERO */
+
+.hero{
+  position:relative;
+  width:100%;
+  height:78vh;
+  max-height:750px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  overflow:hidden;
+  padding:20px;
+}
+
+.hero video{
+  width:100%;
+  max-width:1200px;
+  height:100%;
+  object-fit:cover;
+  border-radius:0 0 40px 40px;
+
+  box-shadow:
+  0 0 40px rgba(59,130,246,.18),
+  0 20px 60px rgba(0,0,0,.45);
+
+  display:block;
+}
+
+.hero::before{
+  content:'';
+  position:absolute;
+  width:100%;
+  max-width:1200px;
+  height:100%;
+  border-radius:0 0 40px 40px;
+
+  background:
+  linear-gradient(to top,
+  rgba(2,6,23,.82),
+  rgba(0,102,255,.12));
+
+  z-index:1;
+}
+
+/* PROFILE */
+
+.profile{
+  position:absolute;
+  inset:0;
+  z-index:2;
+
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+
+  text-align:center;
+  padding:20px;
+}
+
+.profile-img{
+  width:125px;
+  height:125px;
+  border-radius:50%;
+  object-fit:cover;
+
+  border:3px solid rgba(96,165,250,.4);
+
+  box-shadow:
+  0 0 35px rgba(59,130,246,.45),
+  0 0 80px rgba(37,99,235,.18);
+}
+
+.name{
+  margin-top:16px;
+  font-size:32px;
+  font-weight:700;
+
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.check{
+  width:24px;
+  height:24px;
+  border-radius:50%;
+  background:#3b82f6;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  font-size:13px;
+
+  box-shadow:
+  0 0 18px rgba(59,130,246,.9),
+  0 0 35px rgba(59,130,246,.4);
+}
+
+.bio{
+  margin-top:15px;
+  max-width:600px;
+  line-height:1.9;
+  color:rgba(255,255,255,.9);
+  font-size:15px;
+}
+
+.glow{
+  animation:blueGlow 2s infinite alternate;
+}
+
+/* CONTENT */
+
+.content{
+  position:relative;
+  margin-top:-60px;
+  z-index:5;
+
+  width:100%;
+  max-width:850px;
+
+  margin-inline:auto;
+  padding:0 18px 40px;
+}
+
+.card{
+  background:
+  linear-gradient(
+  180deg,
+  rgba(10,25,47,.95),
+  rgba(3,7,18,.96)
+  );
+
+  border:1px solid rgba(96,165,250,.15);
+
+  border-radius:35px;
+  padding:28px;
+
+  backdrop-filter:blur(14px);
+
+  box-shadow:
+  0 0 30px rgba(59,130,246,.12),
+  0 20px 60px rgba(0,0,0,.45);
+}
+
+.box{
+  background:
+  linear-gradient(
+  180deg,
+  rgba(255,255,255,.04),
+  rgba(255,255,255,.02)
+  );
+
+  border:1px solid rgba(96,165,250,.08);
+
+  border-radius:24px;
+  padding:20px;
+  margin-bottom:18px;
+
+  box-shadow:
+  inset 0 0 20px rgba(59,130,246,.03);
+}
+
+.box h2{
+  margin-bottom:12px;
+  font-size:18px;
+}
+
+.box p,
+.box li{
+  line-height:1.9;
+  color:rgba(255,255,255,.82);
+  font-size:14px;
+}
+
+.box ul{
+  padding-left:18px;
+}
+
+.price{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+.price div{
+  background:rgba(255,255,255,.05);
+  border-radius:16px;
+  padding:14px;
+  border:1px solid rgba(255,255,255,.06);
+}
+
+/* BUTTON */
+
+.buttons{
+  display:flex;
+  gap:14px;
+  flex-wrap:wrap;
+  margin-top:22px;
+}
+
+button,
+a{
+  border:none;
+  text-decoration:none;
+  cursor:pointer;
+  transition:.3s;
+}
+
+.play-btn,
+.link-btn{
+  flex:1;
+  min-width:220px;
+
+  padding:15px;
+  border-radius:18px;
+
+  color:white;
+  font-weight:700;
+  text-align:center;
+}
+
+.play-btn{
+  background:
+  linear-gradient(
+  135deg,
+  #3b82f6,
+  #2563eb
+  );
+
+  box-shadow:
+  0 0 20px rgba(59,130,246,.35);
+}
+
+.link-btn{
+  background:
+  linear-gradient(
+  180deg,
+  rgba(59,130,246,.15),
+  rgba(59,130,246,.05)
+  );
+
+  border:1px solid rgba(96,165,250,.15);
+}
+
+/* LIKE DISLIKE */
+
+.rating-box{
+  display:flex;
+  gap:14px;
+  flex-wrap:wrap;
+  margin-top:16px;
+}
+
+.rate-btn{
+  flex:1;
+  min-width:180px;
+
+  padding:16px;
+  border-radius:18px;
+
+  color:white;
+  font-weight:700;
+  font-size:15px;
+}
+
+.like-btn{
+  background:
+  linear-gradient(
+  135deg,
+  #2563eb,
+  #3b82f6
+  );
+}
+
+.dislike-btn{
+  background:
+  linear-gradient(
+  135deg,
+  #334155,
+  #1e293b
+  );
+}
+
+.rating-text{
+  margin-top:15px;
+  text-align:center;
+  color:rgba(255,255,255,.75);
+}
+
+/* FLOAT BUTTON */
+
+.popup-btn{
+  position:fixed;
+  right:20px;
+  bottom:20px;
+
+  width:68px;
+  height:68px;
+
+  border-radius:50%;
+
+  background:
+  linear-gradient(
+  135deg,
+  #3b82f6,
+  #2563eb
+  );
+
+  color:white;
+  font-size:28px;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  z-index:1000;
+
+  box-shadow:
+  0 0 30px rgba(59,130,246,.45);
+
+  animation:pulse 2s infinite;
+}
+
+/* PRODUCT POPUP */
+
+.product-popup{
+  position:fixed;
+  inset:0;
+
+  background:rgba(0,0,0,.72);
+
+  display:none;
+  justify-content:center;
+  align-items:center;
+
+  z-index:2000;
+
+  padding:20px;
+}
+
+.popup-content{
+  width:100%;
+  max-width:430px;
+
+  background:
+  linear-gradient(
+  180deg,
+  rgba(18,18,18,.98),
+  rgba(6,6,6,.98)
+  );
+
+  border-radius:30px;
+  padding:24px;
+}
+
+.product-item{
+  background:rgba(255,255,255,.04);
+
+  border-radius:20px;
+
+  padding:18px;
+  margin-bottom:16px;
+}
+
+.buy-btn,
+.close-popup{
+  width:100%;
+  margin-top:14px;
+
+  padding:13px;
+  border-radius:15px;
+
+  color:white;
+  font-weight:700;
+}
+
+.buy-btn{
+  background:
+  linear-gradient(
+  135deg,
+  #3b82f6,
+  #2563eb
+  );
+}
+
+.close-popup{
+  background:rgba(255,255,255,.08);
+}
+
+/* FOOTER */
+
+.footer{
+  margin-top:25px;
+  text-align:center;
+  color:rgba(255,255,255,.45);
+  font-size:12px;
+}
+
+/* ANIMATION */
+
+@keyframes pulse{
+  50%{
+    transform:scale(1.08);
+  }
+}
+
+@keyframes blueGlow{
+  to{
+    text-shadow:
+    0 0 18px rgba(96,165,250,.9),
+    0 0 35px rgba(59,130,246,.45);
+  }
+}
+
+@keyframes popupFloat{
+  50%{
+    transform:translateY(-25px);
+  }
+}
+
+@keyframes popupFloat2{
+  50%{
+    transform:translateY(20px);
+  }
+}
+
+@keyframes popupFloat3{
+  50%{
+    transform:translateX(-20px);
+  }
+}
+
+@keyframes floatAura{
+  50%{
+    transform:translate(40px,30px);
+  }
+}
+
+@keyframes floatAura2{
+  50%{
+    transform:translate(-30px,-20px);
+  }
+}
+
+/* MOBILE */
+
+@media(max-width:700px){
+
+  .hero{
+    height:65vh;
+  }
+
+  .buttons,
+  .rating-box{
+    flex-direction:column;
+  }
+
+  .name{
+    font-size:24px;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="popup-aura popup1"></div>
+<div class="popup-aura popup2"></div>
+<div class="popup-aura popup3"></div>
+
+<section class="hero">
+
+  <video autoplay muted loop playsinline>
+    <source src="https://c.termai.cc/v118/eTDB.mp4" type="video/mp4">
+  </video>
+
+  <div class="profile">
+
+    <img
+    src="https://c.termai.cc/i185/9XO24dl.jpeg"
+    class="profile-img">
+
+    <div class="name glow">
+      Riz Official
+      <span class="check">✔</span>
+    </div>
+
+    <div class="bio">
+      Halo semuanya 👋<br>
+      Perkenalkan saya <b>Riz</b>, owner dari bot WhatsApp ini.
+      Bot dibuat dengan sistem modern, fitur lengkap,
+      respon cepat, dan tampilan premium ✨
+    </div>
+
+  </div>
+
+</section>
+
+<div class="content">
+
+  <div class="card">
+
+    <div class="box">
+
+      <h2>🚀 Tentang Bot</h2>
+
+      <p>
+        Bot WhatsApp modern dengan fitur lengkap,
+        AI interaktif, respon cepat, stabil,
+        dan smooth di semua device 🔥
+      </p>
+
+    </div>
+
+    <div class="box">
+
+      <h2>💡 Keunggulan Bot</h2>
+
+      <ul>
+        <li>⚡ Respon cepat & anti lemot</li>
+        <li>🔒 Stabil dan minim error</li>
+        <li>🤖 AI interaktif & pintar</li>
+        <li>🎮 Banyak fitur hiburan</li>
+        <li>🛠️ Selalu update terbaru</li>
+      </ul>
+
+    </div>
+
+    <div class="box">
+
+      <h2>💰 Harga Sewa</h2>
+
+      <div class="price">
+
+        <div>📅 1 Bulan — <b>Rp15.000</b></div>
+        <div>🗓️ 1 Tahun — <b>Rp35.000</b></div>
+        <div>❌ Permanen — Tidak Open</div>
+
+      </div>
+
+    </div>
+
+    <div class="box">
+
+      <h2>🎵 My Favorite Song</h2>
+
+      <p>
+        Klik tombol audio untuk memutar lagu favorit ✨
+      </p>
+
+    </div>
+
+    <div class="buttons">
+
+      <button class="play-btn" onclick="playAudio()">
+        ▶ Putar Audio
+      </button>
+
+      <a
+      href="https://chat.whatsapp.com/CgPWnK5F4mj09667Zg7EAE"
+      class="link-btn">
+
+      🚀 Join Grup
+
+      </a>
+
+    </div>
+
+    <div class="buttons">
+
+      <a
+      href="https://whatsapp.com/channel/0029Vb65jnxBVJl2BB4LPw2d"
+      class="link-btn">
+
+      📢 Saluran Bot
+
+      </a>
+
+    </div>
+
+    <div class="box">
+
+      <h2>💙 Pendapat Pengunjung</h2>
+
+      <div class="rating-box">
+
+        <button class="rate-btn like-btn" onclick="likeWebsite()">
+
+          👍 Suka
+          <span id="likeCount">0</span>
+
+        </button>
+
+        <button class="rate-btn dislike-btn" onclick="dislikeWebsite()">
+
+          👎 Tidak Suka
+          <span id="dislikeCount">0</span>
+
+        </button>
+
+      </div>
+
+      <div id="ratingText" class="rating-text">
+
+        Belum ada penilaian 🚀
+
+      </div>
+
+    </div>
+
+    <div class="footer">
+      ✨ Premium WhatsApp Bot Experience ✨
+    </div>
+
+  </div>
+
+</div>
+
+<!-- FLOAT BUTTON -->
+
+<button class="popup-btn" onclick="openPopup()">
+🛒
+</button>
+
+<!-- POPUP -->
+
+<div class="product-popup" id="popup">
+
+  <div class="popup-content">
+
+    <h2>🛍️ Pilih Produk</h2>
+
+    <div class="product-item">
+
+      <h3>🚀 Sewa Bot 1 Bulan</h3>
+
+      <p>
+        Paket premium selama 1 bulan.
+      </p>
+
+      <button
+      class="buy-btn"
+      onclick="window.location.href='https://wa.me/6283171690095'">
+
+      Beli Rp15.000
+
+      </button>
+
+    </div>
+
+    <div class="product-item">
+
+      <h3>🔥 Sewa Bot 1 Tahun</h3>
+
+      <p>
+        Paket hemat premium selama 1 tahun.
+      </p>
+
+      <button
+      class="buy-btn"
+      onclick="window.location.href='https://wa.me/6283171690095'">
+
+      Beli Rp35.000
+
+      </button>
+
+    </div>
+
+    <button
+    class="close-popup"
+    onclick="closePopup()">
+
+    Tutup
+
+    </button>
+
+  </div>
+
+</div>
+
+<!-- AUDIO -->
+
+<audio id="audio" loop preload="auto">
+
+  <source
+  src="https://c.termai.cc/v156/8YJCE.mpeg"
+  type="audio/mpeg">
+
+</audio>
+
+<script>
+
+const audio = document.getElementById("audio");
+const popup = document.getElementById("popup");
+
+let like = 0;
+let dislike = 0;
+
+function playAudio(){
+
+  audio.volume = 1.0;
+
+  audio.play()
+
+  .then(() => {
+
+    document.querySelector(".play-btn").innerHTML =
+    "♫ Audio Sedang Diputar";
+
+  })
+
+  .catch(() => {
+
+    alert(
+    "Klik lagi tombol audio 😅"
+    );
+
+  });
+
+}
+
+function likeWebsite(){
+
+  like++;
+
+  document.getElementById("likeCount").innerHTML = like;
+
+  document.getElementById("ratingText").innerHTML =
+  "🔥 Banyak pengunjung menyukai website ini!";
+
+}
+
+function dislikeWebsite(){
+
+  dislike++;
+
+  document.getElementById("dislikeCount").innerHTML = dislike;
+
+  document.getElementById("ratingText").innerHTML =
+  "😅 Terima kasih atas masukannya.";
+
+}
+
+function openPopup(){
+
+  popup.style.display = "flex";
+
+}
+
+function closePopup(){
+
+  popup.style.display = "none";
+
+}
+
+window.onclick = function(e){
+
+  if(e.target == popup){
+
+    popup.style.display = "none";
+
+  }
+
+}
+
+</script>
+
+</body>
+</html>
